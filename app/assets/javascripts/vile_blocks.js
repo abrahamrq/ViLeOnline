@@ -47,7 +47,7 @@ Blockly.Blocks['vile_void_function'] = {
 Blockly.Blocks['vile_parameter'] = {
   init: function() {
     this.appendValueInput("parameter")
-        .setCheck("parameter")
+        .setCheck("vile_parameter")
         .appendField(new Blockly.FieldDropdown([["int", "int"], ["bool", "bool"], ["float", "float"], ["string", "string"]]), "type")
         .appendField(new Blockly.FieldTextInput("parameter_name"), "parameter_name");
     this.setOutput(true);
@@ -60,7 +60,7 @@ Blockly.Blocks['vile_parameter'] = {
 Blockly.Blocks['vile_if'] = {
   init: function() {
     this.appendValueInput("if_statement")
-        .setCheck("vile_bool")
+        .setCheck(["vile_bool", "vile_variable"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("if");
     this.appendStatementInput("if_code")
@@ -76,7 +76,7 @@ Blockly.Blocks['vile_if'] = {
 Blockly.Blocks['vile_if_else'] = {
   init: function() {
     this.appendValueInput("if_statement")
-        .setCheck("vile_bool")
+        .setCheck(["vile_bool", "vile_variable"])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("if");
     this.appendStatementInput("if_code")
@@ -91,5 +91,86 @@ Blockly.Blocks['vile_if_else'] = {
     this.setColour(55);
     this.setTooltip('');
     this.setHelpUrl('Block to enter a complex condition');
+  }
+};
+
+Blockly.Blocks['vile_bool'] = {
+  init: function() {
+    this.appendValueInput("first_value");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["<", "<"], [">", ">"], ["<=", "<="], [">=", ">="], ["==", "=="]]), "operator");
+    this.appendValueInput("second_value");
+    this.setOutput(true);
+    this.setColour(20);
+    this.setTooltip('Block for entering a relation statement');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_init'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["int", "int"], ["float", "float"], ["string", "string"], ["bool", "bool"]]), "var_type")
+        .appendField(new Blockly.FieldTextInput("var_name"), "var_name");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(120);
+    this.setTooltip('Block for initialization of a variable');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_variable'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("var_name"), "var_name");
+    this.setOutput(true);
+    this.setColour(120);
+    this.setTooltip('');
+    this.setHelpUrl('Block for accessing a variable');
+  }
+};
+
+Blockly.Blocks['vile_assignment'] = {
+  init: function() {
+    this.appendValueInput("assignment")
+        .setCheck(null)
+        .appendField(new Blockly.FieldTextInput("var_name"), "var_name")
+        .appendField("=");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(120);
+    this.setTooltip('Block for an assignment');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_operation'] = {
+  init: function() {
+    this.appendValueInput("left_value")
+        .setCheck(["vile_constant", "vile_variable"]);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["+", "+"], ["-", "-"], ["*", "*"], [" ÷", "/"], ["%", "%"]]), "operator");
+    this.appendValueInput("right_value")
+        .setCheck(["vile_constant", "vile_variable"]);
+    this.setOutput(true);
+    this.setColour(20);
+    this.setTooltip('Block for an operation');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_parenthesis'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("(");
+    this.appendValueInput("operation_code")
+        .setCheck(["vile_operation", "vile_variable", "vile_constant"]);
+    this.appendDummyInput()
+        .appendField(")");
+    this.setOutput(true);
+    this.setColour(0);
+    this.setTooltip('Block to start parenthesis');
+    this.setHelpUrl('');
   }
 };

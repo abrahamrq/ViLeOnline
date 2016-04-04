@@ -16,16 +16,15 @@
   </style>
 </head>
 <body>
-  <p>This is a simple demo of generating code from blocks.</p>
-
-  <p>&rarr; More info on <a href="https://developers.google.com/blockly/installation/code-generators">Code Generators</a>...</p>
-
   <p>
     <button onclick="showCode()">Show Code</button>
     <button onclick="runCode()">Run Code</button>
   </p>
 
-  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+  <div style="width: 100%">
+    <div id="blocklyDiv" style="height: 480px; width: 100%;"></div>
+    <textarea id="blocklyConsole" style="height: 480px; width: 100%;"></textarea>
+  </div>
 
   <xml id="toolbox" style="display: none">
     <category name="Functions">
@@ -37,29 +36,17 @@
     <category name="Conditions">
       <block type='vile_if'></block>
       <block type='vile_if_else'></block>
+      <block type='vile_bool'></block>
     </category>
-    <category name="Logic">
-      <block type='main'></block>
+    <category name="Variables">
+      <block type='vile_init'></block>
+      <block type='vile_assignment'></block>
+      <block type='vile_variable'></block>
     </category>
-    <category name="Loops">
-      <block type="controls_repeat_ext">
-        <value name="TIMES">
-          <block type="math_number">
-            <field name="NUM">10</field>
-          </block>
-        </value>
-      </block>
-      <block type="controls_whileUntil"></block>
-    </category>
-    <category name="Math">
-      <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-      <block type="math_single"></block>
-    </category>
-    <category name="Text">
-      <block type="text"></block>
-      <block type="text_length"></block>
-      <block type="text_print"></block>
+    <category name="Operations">
+      <block type='vile_operation'></block>
+      <block type='vile_bool'></block>
+      <block type='vile_parenthesis'></block>
     </category>
   </xml>
 
@@ -121,7 +108,8 @@
       // Generate JavaScript code and display it.
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
       var code = Blockly.JavaScript.workspaceToCode(workspace);
-      alert(code);
+      debugger
+      $('#blocklyConsole').html(code);
     }
 
     function runCode() {

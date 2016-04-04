@@ -36,16 +36,58 @@ Blockly.JavaScript['vile_parameter'] = function(block) {
 };
 
 Blockly.JavaScript['vile_if'] = function(block) {
-  var value_if_statement = Blockly.JavaScript.valueToCode(block, 'if_statement', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_if_statement = Blockly.JavaScript.valueToCode(block, 'if_statement', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
   var statements_if_code = Blockly.JavaScript.statementToCode(block, 'if_code');
   var code = 'if ('+ value_if_statement +'){\n' + statements_if_code + '}\n';
   return code;
 };
 
 Blockly.JavaScript['vile_if_else'] = function(block) {
-  var value_if_statement = Blockly.JavaScript.valueToCode(block, 'if_statement', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_if_statement = Blockly.JavaScript.valueToCode(block, 'if_statement', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
   var statements_if_code = Blockly.JavaScript.statementToCode(block, 'if_code');
   var statements_else_statement = Blockly.JavaScript.statementToCode(block, 'else_statement');
   var code = 'if ('+ value_if_statement +'){\n' + statements_if_code + '} else {\n' + statements_else_statement + '}\n';
   return code;
+};
+
+Blockly.JavaScript['vile_bool'] = function(block) {
+  var value_first_value = Blockly.JavaScript.valueToCode(block, 'first_value', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
+  var dropdown_operator = block.getFieldValue('operator');
+  var value_second_value = Blockly.JavaScript.valueToCode(block, 'second_value', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
+  var code = value_first_value + ' '+ dropdown_operator + ' ' + value_second_value;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['vile_init'] = function(block) {
+  var dropdown_var_type = block.getFieldValue('var_type');
+  var text_var_name = block.getFieldValue('var_name');
+  var code = dropdown_var_type + ' ' +  text_var_name + ';\n';
+  return code;
+};
+
+Blockly.JavaScript['vile_variable'] = function(block) {
+  var text_var_name = block.getFieldValue('var_name');
+  var code = text_var_name;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['vile_assignment'] = function(block) {
+  var text_var_name = block.getFieldValue('var_name');
+  var value_assignment = Blockly.JavaScript.valueToCode(block, 'assignment', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
+  var code = text_var_name + ' = ' +  value_assignment + ';\n';;
+  return code;
+};
+
+Blockly.JavaScript['vile_operation'] = function(block) {
+  var value_left_value = Blockly.JavaScript.valueToCode(block, 'left_value', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
+  var dropdown_operator = block.getFieldValue('operator');
+  var value_right_value = Blockly.JavaScript.valueToCode(block, 'right_value', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
+  var code = value_left_value + ' ' + dropdown_operator + ' ' + value_right_value;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['vile_parenthesis'] = function(block) {
+  var value_operation_code = Blockly.JavaScript.valueToCode(block, 'operation_code', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
+  var code = '(' + value_operation_code + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };

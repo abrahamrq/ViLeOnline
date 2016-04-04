@@ -34,3 +34,18 @@ Blockly.JavaScript['vile_parameter'] = function(block) {
   }
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['vile_if'] = function(block) {
+  var value_if_statement = Blockly.JavaScript.valueToCode(block, 'if_statement', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_if_code = Blockly.JavaScript.statementToCode(block, 'if_code');
+  var code = 'if ('+ value_if_statement +'){\n' + statements_if_code + '}\n';
+  return code;
+};
+
+Blockly.JavaScript['vile_if_else'] = function(block) {
+  var value_if_statement = Blockly.JavaScript.valueToCode(block, 'if_statement', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_if_code = Blockly.JavaScript.statementToCode(block, 'if_code');
+  var statements_else_statement = Blockly.JavaScript.statementToCode(block, 'else_statement');
+  var code = 'if ('+ value_if_statement +'){\n' + statements_if_code + '} else {\n' + statements_else_statement + '}\n';
+  return code;
+};

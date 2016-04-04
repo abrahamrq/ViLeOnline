@@ -56,3 +56,40 @@ Blockly.Blocks['vile_parameter'] = {
     this.setHelpUrl('Block to enter a parameter');
   }
 };
+
+Blockly.Blocks['vile_if'] = {
+  init: function() {
+    this.appendValueInput("if_statement")
+        .setCheck("vile_bool")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("if");
+    this.appendStatementInput("if_code")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(55);
+    this.setTooltip('Block to enter a single condition');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_if_else'] = {
+  init: function() {
+    this.appendValueInput("if_statement")
+        .setCheck("vile_bool")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("if");
+    this.appendStatementInput("if_code")
+        .setCheck(null);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField("else");
+    this.appendStatementInput("else_statement")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(55);
+    this.setTooltip('');
+    this.setHelpUrl('Block to enter a complex condition');
+  }
+};

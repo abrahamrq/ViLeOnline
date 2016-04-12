@@ -38,64 +38,31 @@
       <block type='vile_if_else'></block>
       <block type='vile_bool'></block>
     </category>
-    <category name="Variables">
-      <block type='vile_init'></block>
-      <block type='vile_assignment'></block>
-      <block type='vile_variable'></block>
-    </category>
     <category name="Operations">
       <block type='vile_operation'></block>
       <block type='vile_bool'></block>
       <block type='vile_parenthesis'></block>
     </category>
+    <category name="Loops">
+      <block type='vile_times_loop'></block>
+      <block type='vile_while_loop'></block>
+    </category>
+    <category name="Variables">
+      <block type='vile_init'></block>
+      <block type='vile_assignment'></block>
+      <block type='vile_variable_init_assign'></block>
+      <block type='vile_variable'></block>
+    </category>
+    <category name="Constants">
+      <block type='vile_bool_constant'></block>
+      <block type='vile_integer_constant'></block>
+      <block type='vile_float_constant'></block>
+      <block type='vile_string_constant'></block>
+    </category>
   </xml>
 
   <xml id="startBlocks" style="display: none">
-    <block type="controls_if" inline="false" x="20" y="20">
-      <mutation else="1"></mutation>
-      <value name="IF0">
-        <block type="logic_compare" inline="true">
-          <field name="OP">EQ</field>
-          <value name="A">
-            <block type="math_arithmetic" inline="true">
-              <field name="OP">MULTIPLY</field>
-              <value name="A">
-                <block type="math_number">
-                  <field name="NUM">6</field>
-                </block>
-              </value>
-              <value name="B">
-                <block type="math_number">
-                  <field name="NUM">7</field>
-                </block>
-              </value>
-            </block>
-          </value>
-          <value name="B">
-            <block type="math_number">
-              <field name="NUM">42</field>
-            </block>
-          </value>
-        </block>
-      </value>
-      <statement name="DO0">
-        <block type="text_print" inline="false">
-          <value name="TEXT">
-            <block type="text">
-              <field name="TEXT">Don't panic</field>
-            </block>
-          </value>
-        </block>
-      </statement>
-      <statement name="ELSE">
-        <block type="text_print" inline="false">
-          <value name="TEXT">
-            <block type="text">
-              <field name="TEXT">Panic</field>
-            </block>
-          </value>
-        </block>
-      </statement>
+    <block type="vile_main" inline="false" x="20" y="20">
     </block>
   </xml>
 
@@ -103,28 +70,8 @@
     var workspace = Blockly.inject('blocklyDiv',
         {media: '../../media/',
          toolbox: document.getElementById('toolbox')});
-
-    function showCode() {
-      // Generate JavaScript code and display it.
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.JavaScript.workspaceToCode(workspace);
-      debugger
-      $('#blocklyConsole').html(code);
-    }
-
-    function runCode() {
-      // Generate JavaScript code and run it.
-      window.LoopTrap = 1000;
-      Blockly.JavaScript.INFINITE_LOOP_TRAP =
-          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-      var code = Blockly.JavaScript.workspaceToCode(workspace);
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      try {
-        eval(code);
-      } catch (e) {
-        alert(e);
-      }
-    }
+    Blockly.Xml.domToWorkspace(workspace, document.getElementById('startBlocks'));
+    workspace.addChangeListener(showCode);
   </script>
 
 </body>

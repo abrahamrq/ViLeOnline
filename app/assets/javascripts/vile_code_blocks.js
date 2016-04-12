@@ -91,3 +91,50 @@ Blockly.JavaScript['vile_parenthesis'] = function(block) {
   var code = '(' + value_operation_code + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['vile_variable_init_assign'] = function(block) {
+  var dropdown_variable_type = block.getFieldValue('variable_type');
+  var text_variable_name = block.getFieldValue('variable_name');
+  var value_vile_init_assign = Blockly.JavaScript.valueToCode(block, 'vile_init_assign', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
+  var code = dropdown_variable_type + ' ' + text_variable_name + ' = ' + value_vile_init_assign + ';\n';
+  return code;
+};
+
+Blockly.JavaScript['vile_bool_constant'] = function(block) {
+  var dropdown_value = block.getFieldValue('value');
+  var code = dropdown_value;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['vile_integer_constant'] = function(block) {
+  var text_value = block.getFieldValue('value');
+  var code = text_value;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['vile_float_constant'] = function(block) {
+  var text_integer = block.getFieldValue('integer');
+  var text_decimal = block.getFieldValue('decimal');
+  var code = text_integer + '.' + text_decimal;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['vile_string_constant'] = function(block) {
+  var text_value = block.getFieldValue('value');
+  var code = '"' + text_value + '"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['vile_times_loop'] = function(block) {
+  var value_how_many = Blockly.JavaScript.valueToCode(block, 'how_many', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
+  var statements_times = Blockly.JavaScript.statementToCode(block, 'times');
+  var code = 'times(' + value_how_many + '){\n' + statements_times + '}\n';
+  return code;
+};
+
+Blockly.JavaScript['vile_while_loop'] = function(block) {
+  var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC).replace('(','').replace(')','');
+  var statements_while = Blockly.JavaScript.statementToCode(block, 'while');
+  var code = 'while(' + value_condition + '){\n' + statements_while + '}\n';;
+  return code;
+};

@@ -6,6 +6,7 @@ Blockly.Blocks['vile_main'] = {
     this.setColour(230);
     this.setTooltip('Block for the main program');
     this.setHelpUrl('');
+    // this.setNextStatement(true, "vile_function");
   }
 };
 
@@ -23,6 +24,8 @@ Blockly.Blocks['vile_function'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("return");
+    // this.setPreviousStatement(true, "vile_main");
+    // this.setNextStatement(true, "vile_function");
     this.setColour(230);
     this.setTooltip('Block for a function with return');
     this.setHelpUrl('');
@@ -171,6 +174,103 @@ Blockly.Blocks['vile_parenthesis'] = {
     this.setOutput(true);
     this.setColour(0);
     this.setTooltip('Block to start parenthesis');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_variable_init_assign'] = {
+  init: function() {
+    this.appendValueInput("vile_init_assign")
+        .setCheck(["vile_variable", "vile_operation", "vile_parenthesis", "vile_true_false"])
+        .appendField(new Blockly.FieldDropdown([["int", "int"], ["float", "float"], ["bool", "bool"], ["string", "string"]]), "variable_type")
+        .appendField(new Blockly.FieldTextInput("variable_name"), "variable_name")
+        .appendField("=");
+    this.appendDummyInput();
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(120);
+    this.setTooltip('Block to init a variable with an assignation');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_bool_constant'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["false", "false"], ["true", "true"]]), "value");
+    this.setOutput(true);
+    this.setColour(290);
+    this.setTooltip('Block of a boolean value');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_integer_constant'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("1"), "value");
+    this.setOutput(true);
+    this.setColour(290);
+    this.setTooltip('Block of an integer value');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_float_constant'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("1"), "integer")
+        .appendField(".")
+        .appendField(new Blockly.FieldTextInput("0"), "decimal");
+    this.setOutput(true);
+    this.setColour(290);
+    this.setTooltip('Block of a floar value');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_string_constant'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("\"")
+        .appendField(new Blockly.FieldTextInput("string"), "value")
+        .appendField("\"");
+    this.setOutput(true);
+    this.setColour(290);
+    this.setTooltip('Block of a string value');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_times_loop'] = {
+  init: function() {
+    this.appendValueInput("how_many")
+        .setCheck(null)
+        .appendField("times (");
+    this.appendDummyInput()
+        .appendField(")");
+    this.appendStatementInput("times")
+        .setCheck(null);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(180);
+    this.setTooltip('Block for a times loop');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_while_loop'] = {
+  init: function() {
+    this.appendValueInput("condition")
+        .setCheck(["vile_bool", "vile_bool_constant"])
+        .appendField("while (");
+    this.appendDummyInput()
+        .appendField(")");
+    this.appendStatementInput("while");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(180);
+    this.setTooltip('Block for a while loop');
     this.setHelpUrl('');
   }
 };

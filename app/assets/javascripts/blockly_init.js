@@ -12,9 +12,17 @@ function runCode() {
       'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
   var code = Blockly.JavaScript.workspaceToCode(workspace);
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  try {
-    eval(code);
-  } catch (e) {
-    alert(e);
-  }
+  $.ajax({
+    type: "POST",
+    url: '/solve',
+    data: {
+      code: code
+    },
+    success: function (response) {
+      alert(response);
+    },
+    error: function (response) {
+      alert('Something went wrong, try later');
+    },
+  });
 }

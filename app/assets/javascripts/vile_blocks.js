@@ -6,44 +6,37 @@ Blockly.Blocks['vile_main'] = {
     this.setColour(230);
     this.setTooltip('Block for the main program');
     this.setHelpUrl('');
-    // this.setNextStatement(true, "vile_function");
+    this.setPreviousStatement(true,  "vile_function");
   }
 };
 
 Blockly.Blocks['vile_function'] = {
   init: function() {
-    this.appendValueInput("parameters")
-        .setCheck("parameter")
+    this.appendValueInput("function_head")
+        .setCheck("vile_parameter")
         .appendField("def")
-        .appendField(new Blockly.FieldDropdown([["bool", "bool"], ["int", "int"], ["float", "float"], ["string", "string"]]), "function_type")
-        .appendField(new Blockly.FieldTextInput("function_name"), "function_name");
-    this.appendDummyInput();
-    this.appendStatementInput("function_code")
-        .setCheck(null);
-    this.appendValueInput("return")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("return");
-    // this.setPreviousStatement(true, "vile_main");
-    // this.setNextStatement(true, "vile_function");
+        .appendField(new Blockly.FieldDropdown([["int", "int"], ["float", "float"], ["bool", "bool"], ["string", "string"], ["void", "void"]]), "function_type")
+        .appendField(new Blockly.FieldTextInput("function_name"), "function_name")
+        .appendField("(");
+    this.appendDummyInput()
+        .appendField(")");
+    this.appendStatementInput("function_code");
+    this.setPreviousStatement(true, "vile_function");
+    this.setNextStatement(true, ["vile_function", "vile_main"]);
     this.setColour(230);
-    this.setTooltip('Block for a function with return');
+    this.setTooltip('Block used to create a function');
     this.setHelpUrl('');
   }
 };
 
-Blockly.Blocks['vile_void_function'] = {
+Blockly.Blocks['vile_return'] = {
   init: function() {
-    this.appendValueInput("parameters")
-        .setCheck("parameter")
-        .appendField("def void")
-        .appendField(new Blockly.FieldTextInput("function_name"), "function_name");
-    this.appendDummyInput();
-    this.appendStatementInput("function_code")
-        .setCheck(null);
-    this.setColour(230);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.appendValueInput("return_value")
+        .appendField("return");
+    this.setPreviousStatement(true);
+    this.setColour(20);
+    this.setTooltip('Block used inside a function to return the value and finish the function');
+    this.setHelpUrl('');
   }
 };
 
@@ -55,8 +48,46 @@ Blockly.Blocks['vile_parameter'] = {
         .appendField(new Blockly.FieldTextInput("parameter_name"), "parameter_name");
     this.setOutput(true);
     this.setColour(20);
-    this.setTooltip('');
-    this.setHelpUrl('Block to enter a parameter');
+    this.setTooltip('Block to enter a parameter');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_function_call'] = {
+  init: function() {
+    this.appendStatementInput("parameters")
+        .setCheck("vile_input_parameter")
+        .appendField(new Blockly.FieldTextInput("function_to_call"), "function_name");
+    this.setOutput(true);
+    this.setColour(230);
+    this.setTooltip('Block for call a function');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_function_call_statute'] = {
+  init: function() {
+    this.appendStatementInput("parameters")
+        .setCheck("vile_input_parameter")
+        .appendField(new Blockly.FieldTextInput("vile_function_call_statute"), "function_name");
+    this.setColour(230);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Block for call a function as an statute');
+    this.setHelpUrl('');
+  }
+};
+
+
+Blockly.Blocks['vile_input_parameter'] = {
+  init: function() {
+    this.appendValueInput("parameter");
+    // this.appendDummyInput();
+    this.setPreviousStatement(true, ["vile_input_parameter", "vile_function_call"]);
+    this.setNextStatement(true, ["vile_input_parameter", "vile_function_call"]);
+    this.setColour(20);
+    this.setTooltip('Parameter for function call');
+    this.setHelpUrl('');
   }
 };
 
@@ -148,6 +179,28 @@ Blockly.Blocks['vile_assignment'] = {
   }
 };
 
+Blockly.Blocks['vile_list_element'] = {
+  init: function() {
+    this.appendValueInput("element");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(120);
+    this.setTooltip('Element of a list');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_list_init'] = {
+  init: function() {
+    this.appendStatementInput("list_elements")
+        .setCheck("vile_list_element");
+    this.setOutput(true);
+    this.setColour(120);
+    this.setTooltip('Block for initialize a list');
+    this.setHelpUrl('');
+  }
+};
+
 Blockly.Blocks['vile_operation'] = {
   init: function() {
     this.appendValueInput("left_value")
@@ -181,15 +234,49 @@ Blockly.Blocks['vile_parenthesis'] = {
 Blockly.Blocks['vile_variable_init_assign'] = {
   init: function() {
     this.appendValueInput("vile_init_assign")
+        .appendField("list")
+        // .appendField(new Blockly.FieldCheckbox('FALSE'), "list")
+        .appendField(new Blockly.FieldCheckbox('FALSE'), "list")
         .setCheck(["vile_variable", "vile_operation", "vile_parenthesis", "vile_true_false"])
         .appendField(new Blockly.FieldDropdown([["int", "int"], ["float", "float"], ["bool", "bool"], ["string", "string"]]), "variable_type")
         .appendField(new Blockly.FieldTextInput("variable_name"), "variable_name")
         .appendField("=");
-    this.appendDummyInput();
+    // this.appendDummyInput();
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(120);
     this.setTooltip('Block to init a variable with an assignation');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_list_access'] = {
+  init: function() {
+    this.appendValueInput("variable_index")
+        .appendField(new Blockly.FieldVariable("variable"), "variable")
+        .appendField("[");
+    this.appendDummyInput()
+        .appendField("]");
+    this.setOutput(true);
+    this.setColour(120);
+    this.setTooltip('Block for accessing a list element');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_list_assign'] = {
+  init: function() {
+    this.appendValueInput("index")
+        .appendField(new Blockly.FieldVariable("variable"), "variable")
+        .appendField("[");
+    this.appendDummyInput();
+    this.appendValueInput("value")
+        .appendField("]")
+        .appendField("=");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(120);
+    this.setTooltip('Block for assignment of a list element');
     this.setHelpUrl('');
   }
 };
@@ -271,6 +358,20 @@ Blockly.Blocks['vile_while_loop'] = {
     this.setNextStatement(true);
     this.setColour(180);
     this.setTooltip('Block for a while loop');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vile_print'] = {
+  init: function() {
+    this.appendValueInput("print_code")
+        .appendField("print(");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(290);
+    this.setTooltip('Block for printing');
     this.setHelpUrl('');
   }
 };

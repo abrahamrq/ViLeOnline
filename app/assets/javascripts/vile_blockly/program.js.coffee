@@ -71,8 +71,7 @@ class Vile.Code
       name
 
   saveProgram: ->
-    debugger
-    if !@block_save && (@save_allowed)
+    if !@block_save && @save_allowed
       @block_save = true
       $.ajax 
         url: '/autosave'

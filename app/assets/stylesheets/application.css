@@ -10,7 +10,28 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require font-awesome
  *= require sweetalert
  *= require_tree .
  *= require_self
  */
+
+.img-responsive{
+	max-height: 100%;
+}
+
+.float-left{
+	float: left;
+}
+
+.float-right{
+	float: right;
+}
+
+.container.main-container{
+  padding-top: 100px;
+}
+
+.page-title{
+	
+}

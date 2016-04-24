@@ -1,0 +1,142 @@
+<%= content_for :nav_right do %>
+  <% if current_user %>
+    <li class="page-scroll">
+      <a href="#try">Try</a>
+    </li>
+  <% else %>
+    <li class="page-scroll">
+      <a href="#start">Start</a>
+    </li>
+  <% end %>
+  <li class="page-scroll">
+    <a href="#info">Info</a>
+  </li>
+  <li class="page-scroll">
+    <a href="#about-us">About us</a>
+  </li>
+<% end %>
+
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <% #image_tag 'profile.png', class: "img-responsive" %>
+        <div class="intro-text">
+          <span class="name">ViLe</span>
+          <hr class="star-light">
+          <span class="skills"> Code - Blocks - Fun </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<% if current_user %>
+  <section id="start">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Start Coding</h2>
+          <hr class="star-primary">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+          <%= link_to code_path, class: 'btn btn-block btn-outline' do %>
+            <i class="fa fa-code"></i> Start
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% else %>
+  <section id="try">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Try</h2>
+          <hr class="star-primary">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+          <%= link_to try_path, class: 'btn btn-block btn-outline' do %>
+            <i class="fa fa-code"></i> Try ViLe
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<section class="success" id="info">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>Info</h2>
+        <hr class="star-light">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-2">
+        <p>BLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLA.</p>
+      </div>
+      <div class="col-lg-4">
+        <p>BLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>About Us</h2>
+        <hr class="star-primary">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= content_for :footer do %>
+  <div class="footer-above">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col col-md-4">
+          <h3>INFO</h3>
+          <p>INFO<br> INFO</p>
+        </div>
+        <div class="footer-col col-md-4">
+          <h3>Around the Web</h3>
+          <ul class="list-inline">
+            <li>
+              <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+            </li>
+            <li>
+              <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+            </li>
+            <li>
+              <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col col-md-4">
+          <h3>About</h3>
+          <p>INFOFONFO.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

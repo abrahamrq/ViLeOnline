@@ -1,0 +1,10 @@
+.container.main-container
+  div class="row"
+    .col-lg-12.text-center
+      h2 class="page-title"
+        | Login
+    .col-md-12
+      hr.star-primary
+    .col-md-6.col-md-offset-3
+      div class="well"
+        = render partial: 'form', locals: { path: login_path }

@@ -1,6 +1,12 @@
 # Vile Controller
 class VileController < ApplicationController
-  def index
+  def welcome
+  end
+
+  def try
+  end
+
+  def code
   end
 
   def solve

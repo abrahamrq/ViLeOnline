@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     hash = BCrypt::Engine.hash_secret(password, user.password_salt)
     if user.password_hash == hash
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to my_profile_path
     else
       wrong_login
     end

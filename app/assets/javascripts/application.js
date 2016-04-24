@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require sweetalert.min
+//= require bootstrap-switch
 //= require codemirror
 //= require codemirror/modes/clike
 //= require_tree .
@@ -38,3 +39,16 @@ $(function() {
 $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
+
+function xmlToString(xmlData) { 
+    var xmlString;
+    //IE
+    if (window.ActiveXObject){
+        xmlString = xmlData.xml;
+    }
+    // code for Mozilla, Firefox, Opera, etc.
+    else{
+        xmlString = (new XMLSerializer()).serializeToString(xmlData);
+    }
+    return xmlString;
+}   

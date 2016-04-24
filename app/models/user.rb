@@ -17,6 +17,8 @@
 class User < ActiveRecord::Base
   acts_as_paranoid
 
+  has_many :vile_programs, inverse_of: :user
+
   validates :name, presence: true
   validates :last_name, presence: true
   validates :password_hash, presence: true, on: :update

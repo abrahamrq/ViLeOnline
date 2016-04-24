@@ -12,6 +12,7 @@
  *
  *= require font-awesome
  *= require sweetalert
+ *= require bootstrap3-switch
  *= require codemirror
  *= require codemirror/themes/monokai
  *= require codemirror/themes/material
@@ -37,4 +38,26 @@
 
 .cm-s-material {
   background-color: #233140 !important;
+}
+
+.left-margin-button{
+	margin-left: 5px;
+}
+
+#startBlocks{
+	display: none;
+}
+
+#loading{
+  background-color: rgba(136, 136, 136, 0.5);
+  opacity: .5;
+  min-height: 100%;
+  z-index: 2000;
+  min-width: 100%;
+  position: fixed;
+  display: none;
+}
+
+#my_profile .CodeMirror {
+  height: auto;
 }

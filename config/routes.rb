@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   # Routes only with session
   scope constraints: ->(req) { !req.session[:user_id].blank? } do
     get 'logout', to: 'sessions#destroy', as: :logout
-    get 'code', to: 'vile#code', as: :code
+    get 'code(/:id)', to: 'vile#code', as: :code
+    delete 'program/:id', to: 'vile#destroy', as: :delete_program
+    post 'autosave', to: 'vile#autosave', as: :autosave
+    post 'vile_program/update_hidden', to: 'vile#update_hidden',
+                                       as: :update_hidden
+    get 'me', to: 'users#my_profile', as: :my_profile
   end
 end

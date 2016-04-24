@@ -2,10 +2,14 @@
   <div class="row">
     <div class="col-md-12">
       <p>
-        <button class="btn btn-md btn-default" onclick="showCode()">Show Code</button>
-        <button class="btn btn-md btn-default" onclick="runCode()">Run Code</button>
+        <!-- <button class="btn btn-md btn-default" onclick="showCode()">Show Code</button> -->
+        <button class="btn btn-md btn-default pull-right left-margin-button" id="runCode">Run Code</button>
       </p>
-
+    </div>
+    <div class="col-md-12">
+      <br>
+    </div>
+    <div class="col-md-12">
       <div style="width: 100%">
         <div id="blocklyDiv" style="height: 480px; width: 100%;"></div>
         <textarea id="blocklyConsole" name='blocklyConsole' style="height: 480px; width: 100%;"></textarea>
@@ -64,19 +68,5 @@
 </xml>
 
 <script>
-  // vile_blockly = new Vile.Try('blocklyDiv', 'toolbox', 'startBlocks', 'blocklyConsole')
-  $(function(){
-    workspace = Blockly.inject('blocklyDiv',{ 
-      media: '../../media/',
-      toolbox: document.getElementById('toolbox')});
-    Blockly.Xml.domToWorkspace(workspace, document.getElementById('startBlocks'));
-    workspace.addChangeListener(showCode);
-    cEditor = CodeMirror.fromTextArea(document.getElementById("blocklyConsole"), {
-      lineNumbers: true,
-      matchBrackets: true,
-      mode: "text/x-csrc",
-      theme: 'material',
-      readOnly: true
-    });
-  });
+  vile_blockly = new Vile.Try()
 </script>

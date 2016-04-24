@@ -1,0 +1,40 @@
+= content_for :nav_right
+  li class="page-scroll"
+    = link_to code_path do
+      | Code
+
+.container.main-container#my_profile
+  div class="row"
+    .col-md-12.text-center
+      h2 class="page-title"
+        = @user.user_name
+    .col-md-12
+      hr.star-primary
+    .col-md-12
+      h3 Codes
+    .col-md-12
+    table class="table table-bordered table-striped"
+      thead
+        tr
+          th Name
+          th Code
+          th style="width: 50px; text-align: center" Private
+          th style="width: 50px; text-align: center" Edit
+          th style="width: 50px; text-align: center" Destroy
+      tbody
+        - @user.vile_programs.each do |vile_program|
+          tr
+            td = vile_program.name
+            td
+              textarea class="program_show" name='program_show' style="height: 480px; width: 100%;"
+                = vile_program.code
+            td
+              = check_box_tag 'private', 'hidden', vile_program.hidden, class: 'private-checkbox form-control', id: "private-checkbox", data: {vile_program_id: vile_program.id}
+            td
+              = link_to code_path(vile_program), class: 'btn btn-success btn-sm' do
+                i.fa.fa-icon.fa-code
+            td
+              = link_to 'Delete', delete_program_path(vile_program), method: :delete, class: 'btn btn-danger btn-small', data: { confirm: 'Are you sure?' }
+
+javascript:
+  code_mirrors = new CodeTextAreas('.program_show')

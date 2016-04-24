@@ -1,5 +1,6 @@
-class Vile.Try
-  constructor: (@vile_program_id) ->
+class Vile.Code
+  constructor: (@vile_program_id, @user_id) ->
+    @block_save = false
     @initBlockly()
     @initCode()
     @showCode()
@@ -19,7 +20,7 @@ class Vile.Try
       matchBrackets: true,
       mode: "text/x-csrc",
       theme: 'material',
-      readOnly: false
+      readOnly: true
     )
 
   showCode: ->
@@ -30,7 +31,10 @@ class Vile.Try
   bindChangeEvents: ->
     @workspace.addChangeListener( =>
       @showCode()
+      @saveProgram()
     )
+    $('#vile_program_name').on 'change', (event) =>
+      @saveProgram()
 
   bindEvents: ->
     $('#showCode').on 'click', (event) =>
@@ -50,3 +54,38 @@ class Vile.Try
           swal(response)
       error:(response) =>
           swal('Error', 'Something went wrong, try later', 'error')
+
+  getCode: ->
+    @cEditor.getDoc().getValue()
+
+  getBlocks: ->
+    xml = Blockly.Xml.workspaceToDom(@workspace)
+    $(xml).attr('id', 'startBlocks')
+    xmlToString(xml)
+
+  getName: ->
+    name = $('#vile_program_name').val()
+    if name == ""
+      return 'Untitled'
+    else
+      name
+
+  saveProgram: ->
+    if !@block_save
+      @block_save = true
+      $.ajax 
+        url: '/autosave'
+        type: "POST"
+        data:
+          vile_program:
+            id: @vile_program_id
+            user_id: @user_id
+            code: @getCode()
+            xml_blocks: @getBlocks()
+            name: @getName()
+        success:(response) =>
+          @block_save = false
+          @vile_program_id = response.id
+        error:(response) =>
+          @block_save = false
+          swal('Error', response, 'error')

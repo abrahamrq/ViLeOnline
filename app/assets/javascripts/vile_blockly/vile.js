@@ -1,28 +1,30 @@
-function showCode() {
-  // Generate JavaScript code and display it.
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  var code = Blockly.JavaScript.workspaceToCode(workspace);
-  cEditor.getDoc().setValue(code);
-}
+$(function(){
+  $(".private-checkbox").bootstrapSwitch({
+    onText: '<i class="fa fa-icon fa-eye-slash"></i>',
+    offText: '<i class="fa fa-icon fa-eye"></i>',
+    onSwitchChange: function(){
+      checkbox = this;
+      $.ajax({
+        url: '/vile_program/update_hidden',
+        type: 'POST',
+        data: { hidden: $(checkbox).is(':checked'),
+                id: $(checkbox).data('vileProgramId')},
+        success: function(){
 
-function runCode() {
-  // Generate JavaScript code and run it.
-  window.LoopTrap = 1000;
-  Blockly.JavaScript.INFINITE_LOOP_TRAP =
-      'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-  var code = Blockly.JavaScript.workspaceToCode(workspace);
-  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-  $.ajax({
-    type: "POST",
-    url: '/solve',
-    data: {
-      code: code
-    },
-    success: function (response) {
-      alert(response);
-    },
-    error: function (response) {
-      alert('Something went wrong, try later');
-    },
+        },
+        error: function(){
+          swal('Error', 'Something went wrong', 'error');
+        }
+      });
+    }
   });
-}
+})
+
+$(document)
+  .ajaxStart(function () {
+    $('#loading').show();
+  })
+  .ajaxStop(function () {
+    $('#loading').hide();
+  }
+);

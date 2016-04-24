@@ -26,6 +26,7 @@ gem 'country_select'
 gem 'codemirror-rails'
 gem 'slim-rails'
 gem 'twitter-bootstrap-rails'
+gem "bootstrap-switch-rails"
 gem 'jquery-datatables-rails', '~> 3.1.1'
 gem 'font-awesome-rails'
 gem 'awesome_nested_fields'

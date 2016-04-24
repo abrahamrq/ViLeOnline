@@ -49,7 +49,7 @@ Blockly.JavaScript['vile_function_call_statute'] = function(block) {
   var text_function_name = block.getFieldValue('function_name');
   var statements_parameters = Blockly.JavaScript.statementToCode(block, 'parameters');
   var code = text_function_name + '(' + statements_parameters.slice(2, -2) + ');\n';
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return code;
 };
 
 Blockly.JavaScript['vile_if'] = function(block) {

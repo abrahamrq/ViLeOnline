@@ -74,6 +74,7 @@ class VileController < ApplicationController
   end
 
   def vile_program_params
-    params.require(:vile_program).permit(:name, :code, :xml_blocks, :user_id)
+    params.require(:vile_program).permit(:name, :code, :xml_blocks)
+          .merge(user_id: current_user.id)
   end
 end

@@ -45,6 +45,11 @@
 			  </li>
         <%= yield :nav_right %>
         <% if current_user %>
+          <li class="page-scroll">
+            <%= link_to my_profile_path do %>
+              Profile
+            <% end %>
+          </li>
           <li>
             <%= link_to logout_path do %>
               Logout

@@ -1,5 +1,5 @@
 class Vile.Code
-  constructor: (@vile_program_id, @user_id) ->
+  constructor: (@vile_program_id, @save_allowed) ->
     @block_save = false
     @initBlockly()
     @initCode()
@@ -71,7 +71,8 @@ class Vile.Code
       name
 
   saveProgram: ->
-    if !@block_save
+    debugger
+    if !@block_save && (@save_allowed)
       @block_save = true
       $.ajax 
         url: '/autosave'
@@ -79,7 +80,6 @@ class Vile.Code
         data:
           vile_program:
             id: @vile_program_id
-            user_id: @user_id
             code: @getCode()
             xml_blocks: @getBlocks()
             name: @getName()

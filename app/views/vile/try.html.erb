@@ -8,7 +8,7 @@
 
       <div style="width: 100%">
         <div id="blocklyDiv" style="height: 480px; width: 100%;"></div>
-        <textarea id="blocklyConsole" style="height: 480px; width: 100%;"></textarea>
+        <textarea id="blocklyConsole" name='blocklyConsole' style="height: 480px; width: 100%;"></textarea>
       </div>
     </div>
   </div>
@@ -64,9 +64,19 @@
 </xml>
 
 <script>
-  var workspace = Blockly.inject('blocklyDiv',
-      {media: '../../media/',
-       toolbox: document.getElementById('toolbox')});
-  Blockly.Xml.domToWorkspace(workspace, document.getElementById('startBlocks'));
-  workspace.addChangeListener(showCode);
+  // vile_blockly = new Vile.Try('blocklyDiv', 'toolbox', 'startBlocks', 'blocklyConsole')
+  $(function(){
+    workspace = Blockly.inject('blocklyDiv',{ 
+      media: '../../media/',
+      toolbox: document.getElementById('toolbox')});
+    Blockly.Xml.domToWorkspace(workspace, document.getElementById('startBlocks'));
+    workspace.addChangeListener(showCode);
+    cEditor = CodeMirror.fromTextArea(document.getElementById("blocklyConsole"), {
+      lineNumbers: true,
+      matchBrackets: true,
+      mode: "text/x-csrc",
+      theme: 'material',
+      readOnly: true
+    });
+  });
 </script>

@@ -14,9 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require sweetalert.min
-//= require ace-rails-ap
-//= require ace/theme-monokai
-//= require ace/mode-c_cpp
+//= require codemirror
+//= require codemirror/modes/clike
 //= require_tree .
 
 /*!

@@ -23,6 +23,7 @@ gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails',
                             branch: 'master', submodules: true
 gem 'bcrypt'
 gem 'country_select'
+gem 'codemirror-rails'
 gem 'slim-rails'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-datatables-rails', '~> 3.1.1'

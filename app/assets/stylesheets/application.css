@@ -12,6 +12,9 @@
  *
  *= require font-awesome
  *= require sweetalert
+ *= require codemirror
+ *= require codemirror/themes/monokai
+ *= require codemirror/themes/material
  *= require_tree .
  *= require_self
  */

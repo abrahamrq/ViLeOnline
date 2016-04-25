@@ -444,14 +444,15 @@ def generate_era(function_id):
   quadruple = ["ERA", "", "", function_id]
   quadruplets.append(quadruple)
   # print quadruple
-  if var_options['scope'] == 'main':
-    result = assign_address('temps', var_dict['global'][function_id]['type'])
-  else:
-    result = assign_address('function_temps', var_dict['global'][function_id]['type'])
-  types_stack.append(var_dict['global'][function_id]['type'])
-  operand_stack.append(result)
-  types_stack.append(var_dict['global'][function_id]['type'])
-  operand_stack.append(result)
+  if funct_dict[function_id]['type'] != types['void']:
+    if var_options['scope'] == 'main':
+      result = assign_address('temps', var_dict['global'][function_id]['type'])
+    else:
+      result = assign_address('function_temps', var_dict['global'][function_id]['type'])
+    types_stack.append(var_dict['global'][function_id]['type'])
+    operand_stack.append(result)
+    types_stack.append(var_dict['global'][function_id]['type'])
+    operand_stack.append(result)
 
 def generate_gosub():
   global quadruplets

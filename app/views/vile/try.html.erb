@@ -12,56 +12,18 @@
     <div class="col-md-12">
       <div style="width: 100%">
         <div id="blocklyDiv" style="height: 480px; width: 100%;"></div>
-        <textarea id="blocklyConsole" name='blocklyConsole' style="height: 480px; width: 100%;"></textarea>
+          <div class="col-md-6">
+            <textarea id="blocklyConsole" name='blocklyConsole' style="height: 480px; width: 100%;"></textarea>
+          </div>
+          <div class="col-md-6">
+            <textarea id="blocklyConsoleLog" name='blocklyConsoleLog' style="height: 480px; width: 100%;"></textarea>
+          </div>
       </div>
     </div>
   </div>
 </div>
 
-<xml id="toolbox" style="display: none">
-  <category name="Functions">
-    <block type='vile_main'></block>
-    <block type='vile_function'></block>
-    <block type='vile_parameter'></block>
-    <block type='vile_return'></block>
-    <block type='vile_function_call'></block>
-    <block type='vile_function_call_statute'></block>
-    <block type='vile_input_parameter'></block>
-  </category>
-  <category name="Conditions">
-    <block type='vile_if'></block>
-    <block type='vile_if_else'></block>
-    <block type='vile_bool'></block>
-  </category>
-  <category name="Operations">
-    <block type='vile_operation'></block>
-    <block type='vile_bool'></block>
-    <block type='vile_parenthesis'></block>
-  </category>
-  <category name="Loops">
-    <block type='vile_times_loop'></block>
-    <block type='vile_while_loop'></block>
-  </category>
-  <category name="Variables">
-    <block type='vile_assignment'></block>
-    <block type='vile_variable_init_assign'></block>
-    <block type='vile_variable'></block>
-    <block type='vile_list_init'></block>
-    <block type='vile_list_element'></block>
-    <block type='vile_list_access'></block>
-    <block type='vile_list_assign'></block>
-  </category>
-  <category name="Constants">
-    <block type='vile_bool_constant'></block>
-    <block type='vile_integer_constant'></block>
-    <block type='vile_float_constant'></block>
-    <block type='vile_string_constant'></block>
-  </category>
-  <category name="Print">
-    <block type='vile_print'></block>
-  </category>
-</xml>
-
+<%= render '/vile/toolbox' %>
 <xml id="startBlocks" style="display: none">
   <block type="vile_main" inline="false" x="20" y="20">
   </block>

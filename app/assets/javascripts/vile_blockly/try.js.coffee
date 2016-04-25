@@ -19,7 +19,13 @@ class Vile.Try
       matchBrackets: true,
       mode: "text/x-csrc",
       theme: 'material',
-      readOnly: false
+      readOnly: true
+    )
+    @cLogEditor = CodeMirror.fromTextArea(document.getElementById('blocklyConsoleLog'), 
+      lineNumbers: true,
+      matchBrackets: true,
+      mode: "text/x-csrc",
+      readOnly: true
     )
 
   showCode: ->
@@ -47,6 +53,14 @@ class Vile.Try
       data: 
         code: @code
       success:(response) =>
-          swal(response)
+        @cLogEditor.getDoc().setValue(response)
+        swal({
+          title: "Done!",
+          text: "See the result on the console.",
+          timer: 1000,
+          type: 'success'
+          showConfirmButton: false
+          }
+        );
       error:(response) =>
-          swal('Error', 'Something went wrong, try later', 'error')
+        swal('Error', 'Something went wrong, try later', 'error')

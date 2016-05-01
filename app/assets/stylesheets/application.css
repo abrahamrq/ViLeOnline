@@ -20,6 +20,10 @@
  *= require_self
  */
 
+.welcome-image{
+  height: 50%
+}
+
 .img-responsive{
 	max-height: 100%;
 }

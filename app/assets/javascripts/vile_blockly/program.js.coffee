@@ -53,7 +53,8 @@ class Vile.Code
     $('#printQuadruplets').on 'click', (event) =>
       @printQuadruplets()
 
-  runCode: ->
+ runCode: ->
+    $('#loading').show()
     @code = Blockly.JavaScript.workspaceToCode(@workspace);
     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
     $.ajax 
@@ -62,6 +63,7 @@ class Vile.Code
       data: 
         code: @code
       success:(response) =>
+        $('#loading').hide()
         @cLogEditor.getDoc().setValue(response)
         swal({
           title: "Done!",
@@ -72,9 +74,11 @@ class Vile.Code
           }
         );
       error:(response) =>
+        $('#loading').hide()
         swal('Error', 'Something went wrong, try later', 'error')
 
   checkSyntax: ->
+    $('#loading').show()
     @code = Blockly.JavaScript.workspaceToCode(@workspace);
     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
     $.ajax 
@@ -83,6 +87,7 @@ class Vile.Code
       data: 
         code: @code
       success:(response) =>
+        $('#loading').hide()
         swal({
           title: "Done!",
           text: response,
@@ -92,9 +97,11 @@ class Vile.Code
           }
         );
       error:(response) =>
+        $('#loading').hide()
         swal('Error', 'Something went wrong, try later', 'error')
 
   printQuadruplets: ->
+    $('#loading').show()
     @code = Blockly.JavaScript.workspaceToCode(@workspace);
     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
     $.ajax 
@@ -103,6 +110,7 @@ class Vile.Code
       data: 
         code: @code
       success:(response) =>
+        $('#loading').hide()
         @cLogEditor.getDoc().setValue(response)
         swal({
           title: "Done!",
@@ -113,6 +121,7 @@ class Vile.Code
           }
         );
       error:(response) =>
+        $('#loading').hide()
         swal('Error', 'Something went wrong, try later', 'error')
 
   getCode: ->

@@ -8,19 +8,19 @@ Rails.application.routes.draw do
   # Routes only without session
   scope constraints: ->(req) { req.session[:user_id].blank? } do
     get '/try', to: 'vile#try', as: :try
-    get 'login', to: 'sessions#new', as: :new_login
-    post 'login', to: 'sessions#create', as: :login
+    get '/login', to: 'sessions#new', as: :new_login
+    post '/login', to: 'sessions#create', as: :login
     resources :registrations, only: [:new, :create]
   end
 
   # Routes only with session
   scope constraints: ->(req) { !req.session[:user_id].blank? } do
-    get 'logout', to: 'sessions#destroy', as: :logout
-    get 'code(/:id)', to: 'vile#code', as: :code
-    delete 'program/:id', to: 'vile#destroy', as: :delete_program
-    post 'autosave', to: 'vile#autosave', as: :autosave
-    post 'vile_program/update_hidden', to: 'vile#update_hidden',
+    get '/logout', to: 'sessions#destroy', as: :logout
+    get '/code(/:id)', to: 'vile#code', as: :code
+    delete '/program/:id', to: 'vile#destroy', as: :delete_program
+    post '/autosave', to: 'vile#autosave', as: :autosave
+    post '/vile_program/update_hidden', to: 'vile#update_hidden',
                                        as: :update_hidden
-    get 'me', to: 'users#my_profile', as: :my_profile
+    get '/my_profile', to: 'users#my_profile', as: :my_profile
   end
 end

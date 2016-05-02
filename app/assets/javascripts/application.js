@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require sweetalert.min
 //= require bootstrap-switch
 //= require codemirror
@@ -52,3 +51,6 @@ function xmlToString(xmlData) {
     }
     return xmlString;
 }   
+
+
+//= require turbolinks

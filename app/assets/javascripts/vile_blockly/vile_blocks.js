@@ -254,7 +254,7 @@ Blockly.Blocks['vile_variable_init_assign'] = {
 Blockly.Blocks['vile_list_access'] = {
   init: function() {
     this.appendValueInput("variable_index")
-        .appendField(new Blockly.FieldVariable("variable"), "variable")
+        .appendField(new Blockly.FieldTextInput("variable_name"), "variable_name")
         .appendField("[");
     this.appendDummyInput()
         .appendField("]");
@@ -268,7 +268,7 @@ Blockly.Blocks['vile_list_access'] = {
 Blockly.Blocks['vile_list_assign'] = {
   init: function() {
     this.appendValueInput("index")
-        .appendField(new Blockly.FieldVariable("variable"), "variable")
+        .appendField(new Blockly.FieldTextInput("variable_name"), "variable_name")
         .appendField("[");
     this.appendDummyInput();
     this.appendValueInput("value")

@@ -539,7 +539,8 @@ def print_quadruplets():
   global quadruplets
   i = 0
   for quadruplet in quadruplets:
-    pp.pprint(str(i) + '.- ' + quadruplet)
+    print(str(i) + '.- ' )
+    pp.pprint(quadruplet)
 
 def print_global_dict():
   print "\GLOBAL DICT"

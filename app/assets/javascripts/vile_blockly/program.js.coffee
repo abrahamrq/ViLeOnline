@@ -53,7 +53,7 @@ class Vile.Code
     $('#printQuadruplets').on 'click', (event) =>
       @printQuadruplets()
 
- runCode: ->
+  runCode: ->
     $('#loading').show()
     @code = Blockly.JavaScript.workspaceToCode(@workspace);
     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;

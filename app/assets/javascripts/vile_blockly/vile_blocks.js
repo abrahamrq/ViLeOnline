@@ -6,6 +6,7 @@ Blockly.Blocks['vile_main'] = {
     this.setColour(230);
     this.setTooltip('Block for the main program');
     this.setHelpUrl('');
+    this.setDeletable(false);
     this.setPreviousStatement(true,  "vile_function");
   }
 };

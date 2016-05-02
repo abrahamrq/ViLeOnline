@@ -43,12 +43,58 @@ class Vile.Try
       @showCode()
     $('#runCode').on 'click', (event) =>
       @runCode()
+    $('#checkSyntax').on 'click', (event) =>
+      @checkSyntax()
+    $('#printQuadruplets').on 'click', (event) =>
+      @printQuadruplets()
+
 
   runCode: ->
     @code = Blockly.JavaScript.workspaceToCode(@workspace);
     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
     $.ajax 
       url: '/solve'
+      type: "POST"
+      data: 
+        code: @code
+      success:(response) =>
+        @cLogEditor.getDoc().setValue(response)
+        swal({
+          title: "Done!",
+          text: "See the result on the console.",
+          timer: 1000,
+          type: 'success'
+          showConfirmButton: false
+          }
+        );
+      error:(response) =>
+        swal('Error', 'Something went wrong, try later', 'error')
+
+  checkSyntax: ->
+    @code = Blockly.JavaScript.workspaceToCode(@workspace);
+    Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+    $.ajax 
+      url: '/syntax_check'
+      type: "POST"
+      data: 
+        code: @code
+      success:(response) =>
+        swal({
+          title: "Done!",
+          text: response,
+          timer: 1000,
+          type: 'success'
+          showConfirmButton: false
+          }
+        );
+      error:(response) =>
+        swal('Error', 'Something went wrong, try later', 'error')
+
+  printQuadruplets: ->
+    @code = Blockly.JavaScript.workspaceToCode(@workspace);
+    Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+    $.ajax 
+      url: '/print_quadruplets'
       type: "POST"
       data: 
         code: @code

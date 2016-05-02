@@ -35,8 +35,20 @@ class VileController < ApplicationController
 
   def solve
   	code = params[:code]
-  	result = `python python/ViLe/parser.py '#{code}'`
+  	result = `python python/ViLe/parser.py '#{code}' 'solve'`
   	render json: result.to_json, status: 200
+  end
+
+  def syntax_check
+    code = params[:code]
+    result = `python python/ViLe/parser.py '#{code}' 'syntax_check'`
+    render json: result.to_json, status: 200
+  end
+
+  def print_quadruplets
+    code = params[:code]
+    result = `python python/ViLe/parser.py '#{code}' 'print_quadruplets'`
+    render json: result.to_json, status: 200
   end
 
   def update_hidden

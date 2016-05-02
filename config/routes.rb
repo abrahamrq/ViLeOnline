@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'vile#welcome'
   post '/solve', to: 'vile#solve', as: :solve
+  post '/syntax_check', to: 'vile#syntax_check', as: :syntax_check
+  post '/print_quadruplets', to: 'vile#print_quadruplets',
+                             as: :print_quadruplets
 
   # Routes only without session
   scope constraints: ->(req) { req.session[:user_id].blank? } do

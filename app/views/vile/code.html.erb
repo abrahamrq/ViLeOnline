@@ -1,11 +1,13 @@
 <div class="container main-container">
   <div class="row">
-    <div class="col-md-8">
-      <%= text_field_tag 'name', @vile_program.name, maxlength: 12, id: 'vile_program_name', class: 'form-control', placeholder: 'Program Name' %>
+    <div class="col-md-6">
+      <%= text_field_tag 'name', @vile_program.name, maxlength: 15, id: 'vile_program_name', class: 'form-control', placeholder: 'Program Name' %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <p>
         <button class="btn btn-md btn-default pull-right left-margin-button" id="runCode">Run Code</button>
+        <button class="btn btn-md btn-default pull-right left-margin-button" id="checkSyntax">Check Syntax</button>
+        <button class="btn btn-md btn-default pull-right left-margin-button" id="printQuadruplets">Print Quadruplets</button>
       </p>
     </div>
     <div class="col-md-12">

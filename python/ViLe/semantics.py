@@ -540,6 +540,7 @@ def print_quadruplets():
   i = 0
   for quadruplet in quadruplets:
     print str(i) + '.- ', quadruplet
+    i += 1
 
 def print_global_dict():
   print "\GLOBAL DICT"

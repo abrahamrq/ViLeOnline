@@ -207,7 +207,7 @@ Blockly.Blocks['vile_operation'] = {
     this.appendValueInput("left_value")
         .setCheck(["vile_constant", "vile_variable"]);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["+", "+"], ["-", "-"], ["*", "*"], [" ÷", "/"], ["%", "%"]]), "operator");
+        .appendField(new Blockly.FieldDropdown([["+", "+"], ["-", "-"], ["*", "*"], [" ÷", "/"], ["%", "%"],["and", "and"],["or", "or"]]), "operator");
     this.appendValueInput("right_value")
         .setCheck(["vile_constant", "vile_variable"]);
     this.setOutput(true);

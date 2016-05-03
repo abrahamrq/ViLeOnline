@@ -11,7 +11,6 @@ class Vile.Code
     @workspace = Blockly.inject('blocklyDiv',
       media: '../../media/',
       toolbox: document.getElementById('toolbox'),
-      readOnly: !@save_allowed
     )
     Blockly.Xml.domToWorkspace(@workspace, document.getElementById('startBlocks'))
 

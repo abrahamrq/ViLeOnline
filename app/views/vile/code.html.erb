@@ -23,7 +23,7 @@
       <% if current_user.id == @vile_program.user_id || @vile_program.new_record? %>
         Owned by you
       <% else %>
-        <%= "Ownder by #{@vile_program.user.user_name}" %>
+        <%= "Owned by #{@vile_program.user.user_name}" %>
       <% end %>
       <br>
     </div>

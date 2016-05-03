@@ -88,7 +88,6 @@ class Vile.Try
           title: "Done!"
           text: response
           type: 'success'
-          showConfirmButton: false
           }
         );
       error:(response) =>

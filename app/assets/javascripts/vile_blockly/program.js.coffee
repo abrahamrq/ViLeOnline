@@ -93,7 +93,6 @@ class Vile.Code
           title: "Done!",
           text: response,
           type: 'success'
-          showConfirmButton: false
           }
         );
       error:(response) =>

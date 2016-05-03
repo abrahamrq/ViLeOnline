@@ -34,7 +34,7 @@
               = link_to code_path(vile_program), class: 'btn btn-success btn-sm' do
                 i.fa.fa-icon.fa-code
             td
-              = link_to 'Delete', delete_program_path(vile_program), method: :delete, class: 'btn btn-danger btn-small', data: { confirm: 'Are you sure?' }
+              = link_to 'Delete', delete_program_path(vile_program), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }
 
 javascript:
   code_mirrors = new CodeTextAreas('.program_show')

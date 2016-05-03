@@ -52,6 +52,8 @@ class Vile.Code
       @checkSyntax()
     $('#printQuadruplets').on 'click', (event) =>
       @printQuadruplets()
+    $('#copyProgram').on 'click', (event) =>
+      @copyProgram()
 
   runCode: ->
     $('#loading').show()
@@ -154,6 +156,32 @@ class Vile.Code
         success:(response) =>
           @block_save = false
           @vile_program_id = response.id
+        error:(response) =>
+          @block_save = false
+          swal('Error', response, 'error')
+
+  copyProgram: ->
+    if !@block_save && !@save_allowed
+      @block_save = true
+      $.ajax 
+        url: '/copy_program'
+        type: "POST"
+        data:
+          vile_program:
+            code: @getCode()
+            xml_blocks: @getBlocks()
+            name: @getName()
+        success:(response) =>
+          @block_save = false
+          swal({
+            title: "Done!",
+            text: "Go to your profile to see this code",
+            timer: 2000,
+            type: 'success'
+            showConfirmButton: false
+            }
+          );
+          $('#copyProgram').hide()
         error:(response) =>
           @block_save = false
           swal('Error', response, 'error')

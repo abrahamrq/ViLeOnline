@@ -63,7 +63,15 @@ class VileController < ApplicationController
     else
         render json: @vile_program, status: 403
     end
+  end
 
+  def copy_program
+    @vile_program = VileProgram.new(vile_program_params)
+    if @vile_program.save
+      render json: @vile_program, status: 200
+    else
+      render json: @vile_program.full_messages.join(', ').to_json, status: 400
+    end
   end
 
   private

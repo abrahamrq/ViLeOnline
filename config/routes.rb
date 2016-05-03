@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get '/code(/:id)', to: 'vile#code', as: :code
     delete '/program/:id', to: 'vile#destroy', as: :delete_program
     post '/autosave', to: 'vile#autosave', as: :autosave
+    post '/copy_program', to: 'vile#autosave', as: :copy_program
     post '/vile_program/update_hidden', to: 'vile#update_hidden',
                                        as: :update_hidden
     get '/my_profile', to: 'users#my_profile', as: :my_profile

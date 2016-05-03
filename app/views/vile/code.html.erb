@@ -14,6 +14,9 @@
         <button class="btn btn-md btn-default pull-right left-margin-button" id="runCode">Run Code</button>
         <button class="btn btn-md btn-default pull-right left-margin-button" id="checkSyntax">Check Syntax</button>
         <button class="btn btn-md btn-default pull-right left-margin-button" id="printQuadruplets">Print Quadruplets</button>
+        <% if current_user.id != @vile_program.user_id && !@vile_program.new_record? %>
+          <button class="btn btn-md btn-default pull-right left-margin-button" id="copyProgram">Copy Program</button>
+        <% end %>
       </p>
     </div>
     <div class="col-md-12">

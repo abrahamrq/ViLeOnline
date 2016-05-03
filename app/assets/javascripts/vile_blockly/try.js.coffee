@@ -85,9 +85,8 @@ class Vile.Try
       success:(response) =>
         $('#loading').hide()
         swal({
-          title: "Done!",
-          text: response,
-          timer: 1000,
+          title: "Done!"
+          text: response
           type: 'success'
           showConfirmButton: false
           }

@@ -92,7 +92,6 @@ class Vile.Code
         swal({
           title: "Done!",
           text: response,
-          timer: 1000,
           type: 'success'
           showConfirmButton: false
           }
